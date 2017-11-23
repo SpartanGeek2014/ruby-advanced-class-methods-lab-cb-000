@@ -49,10 +49,9 @@ class Song
       song.artist_name
     end
 
-    def 
+    def
       Song.destroy_all
       Song.all.clear
     end
-  
-end
 
+end
