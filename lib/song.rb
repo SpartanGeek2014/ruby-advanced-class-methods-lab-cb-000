@@ -33,7 +33,7 @@ class Song
     end
 
     def Song.find_or_create_by_name(song_name)
-      self.find_or_create_by_name(song_name) || self.create_by_name(song_name)
+      self.find_by_name(song_name) || self.create_by_name(song_name)
     end
 
     def self.alphabetical
@@ -50,6 +50,17 @@ class Song
       song.artist_name = artist_name
       song
     end
+
+    def self.create_from_filename(filename)
+      parts = filename.split(" - ")
+      artist_name = parts[0]
+      song_name = parts[1].gsub(".mp3", "")
+
+      song = self.create
+      song.name = song_name
+      song.artist_name = artist_name
+      song
+  end
 
     def self.destroy_all
       self.all.clear
